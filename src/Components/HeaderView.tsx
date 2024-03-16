@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Image, Menu, Space} from "antd";
+import {Affix, Image, Menu, Space} from "antd";
 import {Header} from "antd/es/layout/layout";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../Redux/store";
@@ -18,13 +18,13 @@ import {CoffeeOutlined} from "@ant-design/icons";
 function convertToMenuType(categories: Category[]): MenuItemType[] {
   return categories.map(category => {
     return {
-      label: <span style={{ fontWeight: '500'}}>{ "   " + category.name}</span>,
-      key: category.id,
-      icon: <Image
-        src={'/'+ category.id + ".png" } width='24px'
-        preview={false}
-
-      />
+      label: <span style={{ fontWeight: '550', fontSize: '15px'}}>{ "   " + category.name}</span>,
+      key: category.id
+      // icon: <Image
+      //   src={'/'+ category.id + ".png" } width='24px'
+      //   preview={false}
+      //   style={{ color: 'black' }}
+      // />
     }
   })
 }
@@ -44,7 +44,6 @@ function HeaderView() {
       .then(categories => {
         LocalStorage.shared.setCategories(categories)
         dispatch(setCategories(categories))
-        console.log("CALLED")
         setItemForCategory(categories[0])
       })
 
@@ -92,6 +91,12 @@ function HeaderView() {
       itemService.getItems(category)
         .then(items => {
           dispatch(setItems(items))
+          setTimeout(() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          }, 50)
         })
     }
   }
@@ -104,19 +109,13 @@ function HeaderView() {
   }
 
   return (
-    <Header style={{backgroundColor: "white", height: '100px', padding: '10px' }}>
+    <Affix offsetTop={0}>
+    <Header style={{backgroundColor: "white", padding: '10px' }}>
       <div style={{display: 'flex', alignItems: 'center', justifyItems: 'center', width: '100%', height: '100%'}}>
-
-        {/*<input type="file"*/}
-
-        {/*       onChange={(event) => {*/}
-        {/*         readFile(event)*/}
-
-        {/*       }}/>*/}
         <Image
           src='/logo.png'
           preview={false}
-          width="100px"/>
+          width="120px"/>
 
         <Menu
           mode="horizontal"
@@ -128,6 +127,7 @@ function HeaderView() {
 
       </div>
     </Header>
+    </Affix>
   );
 }
 

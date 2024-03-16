@@ -11,8 +11,7 @@ function MenuView() {
 
   const items = useSelector((state: RootState) => state.items);
 
-  return <Layout>
-    <Content style={{ paddingLeft: '8%', paddingRight: '8%', paddingTop: '50px', paddingBottom: '50px', backgroundColor: 'white' }}>
+  return <Content style={{ paddingLeft: '8%', paddingRight: '8%', paddingTop: '50px', paddingBottom: '50px', backgroundColor: 'white' }}>
       <Flex wrap="wrap" gap="large">
         {
           items.map(item => (
@@ -63,7 +62,6 @@ function MenuView() {
         }
       </Flex>
     </Content>
-  </Layout>
 }
 
 export default MenuView;
