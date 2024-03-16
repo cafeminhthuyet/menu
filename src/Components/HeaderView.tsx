@@ -107,7 +107,7 @@ function HeaderView() {
     <Header style={{backgroundColor: "white", padding: '10px' }}>
       <div style={{display: 'flex', alignItems: 'center', justifyItems: 'center', width: '100%', height: '100%'}}>
         <Image
-          src='/logo.png'
+          src={"https://i.ibb.co/NW55ffL/logo.png"}
           preview={false}
           width="120px"/>
 

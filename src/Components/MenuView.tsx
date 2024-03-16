@@ -1,4 +1,4 @@
-import {Button, Card, Col, Divider, Flex, Grid, Layout, Row, Typography} from "antd";
+import {Button, Card, Col, Divider, Flex, Grid, Image, Layout, Row, Typography} from "antd";
 import {Content} from "antd/es/layout/layout";
 import Meta from "antd/es/card/Meta";
 import {useSelector} from "react-redux";
@@ -28,7 +28,7 @@ function MenuView() {
               style={{
                 width: '18%', marginBottom: '20px', minWidth: '150px'
             }}
-              cover={<img alt="No Image" src={item.image} />}
+              cover={<Image alt="No Image" src={item.image} />}
             >
               {/*<Meta title={*/}
               {/*  <Typography.Text style={{wordWrap: 'break-word'}} >{item.name}</Typography.Text>*/}
