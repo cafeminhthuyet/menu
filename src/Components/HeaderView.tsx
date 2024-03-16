@@ -13,18 +13,12 @@ import * as XLSX from 'xlsx'
 import Item from "../Models/Item";
 import ItemService from "../Firebase/ItemService";
 import {setItems} from "../Redux/ItemRedux";
-import {CoffeeOutlined} from "@ant-design/icons";
 
 function convertToMenuType(categories: Category[]): MenuItemType[] {
   return categories.map(category => {
     return {
       label: <span style={{ fontWeight: '550', fontSize: '15px'}}>{ "   " + category.name}</span>,
       key: category.id
-      // icon: <Image
-      //   src={'/'+ category.id + ".png" } width='24px'
-      //   preview={false}
-      //   style={{ color: 'black' }}
-      // />
     }
   })
 }
