@@ -13,6 +13,8 @@ import * as XLSX from 'xlsx'
 import Item from "../Models/Item";
 import ItemService from "../Firebase/ItemService";
 import {setItems} from "../Redux/ItemRedux";
+import {MoreOutlined, RightCircleFilled, SettingOutlined} from "@ant-design/icons";
+import category from "../Models/Category";
 
 function convertToMenuType(categories: Category[]): MenuItemType[] {
   return categories.map(category => {
@@ -36,9 +38,10 @@ function HeaderView() {
 
     service.getCategories()
       .then(categories => {
-        LocalStorage.shared.setCategories(categories)
-        dispatch(setCategories(categories))
-        setItemForCategory(categories[0])
+        let sortedCategories = categories.sort((a, b) => { return a.idx - b.idx } )
+        LocalStorage.shared.setCategories(sortedCategories)
+        dispatch(setCategories(sortedCategories))
+        setItemForCategory(sortedCategories[0])
       })
 
 
@@ -109,16 +112,19 @@ function HeaderView() {
         <Image
           src={"https://i.ibb.co/NW55ffL/logo.png"}
           preview={false}
-          width="120px"/>
+          width="150px"/>
 
-        <Menu
-          mode="horizontal"
-          defaultSelectedKeys={['caphe']}
-          items={convertToMenuType(categories)}
-          style={{flex: 1, minWidth: 0}}
-          onClick={onSelectCategory}
-        />
 
+
+        <div style={{ overflowX: 'auto', overflowY: 'hidden' }}>
+          <Menu
+            mode="horizontal"
+            defaultSelectedKeys={[LocalStorage.shared.getCategories()[0].id || 'monmoi']}
+            items={convertToMenuType(categories)}
+            style={{ minWidth: '1000px'}}
+            onClick={onSelectCategory}
+          />
+        </div>
       </div>
     </Header>
     </Affix>

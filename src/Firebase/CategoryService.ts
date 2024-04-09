@@ -13,9 +13,12 @@ class CategoryService {
     let cls = collection(firestore, this.DB_NAME)
     let snapshot = await getDocs(cls)
     return snapshot.docs.map(doc => {
+      let data = doc.data()
+      console.log(data)
       return {
         id: doc.id,
-        name: doc.data()["name"] as string || ""
+        idx: data["idx"],
+        name: data["name"] as string || ""
       } as Category
     })
   }

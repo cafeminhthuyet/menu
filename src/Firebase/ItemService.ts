@@ -32,8 +32,6 @@ class ItemService {
       grouped[item.categoryID].push(item)
     })
 
-    console.log(grouped)
-
     let keys = Object.keys(grouped)
 
     for (let i = 0; i < keys.length; i++) {
@@ -46,7 +44,6 @@ class ItemService {
         if (!item.id || item.id.length === 0 || key.length === 0) { continue }
         let ref = doc(firestore, this.DB_NAME, key, "data", item.id)
         await setDoc(ref, item)
-        console.log("ADDED")
       }
     }
   }

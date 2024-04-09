@@ -21,9 +21,8 @@ class FirebaseService {
   static shared = new FirebaseService()
   app = initializeApp(firebaseConfig);
   firestore = getFirestore(this.app);
-  constructor() {
 
-  }
+
 }
 
 export default FirebaseService;
